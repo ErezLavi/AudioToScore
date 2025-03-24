@@ -71,10 +71,10 @@ if audio_path:
             # Provide download link for MIDI
             with open(midi_output_path, "rb") as midi_file:
                 st.download_button("Download MIDI File", midi_file, file_name=midi_output_path.name)
-            
-            ############## Guitar Tablature Conversion ############## 
-            try:
 
+            ############## Guitar Tablature Conversion ############## 
+
+            try:
                 f = pretty_midi.PrettyMIDI(midi_output_path.as_posix())
 
                 # Optional: tune the guitar; Tuning() uses standard EADGBE
@@ -87,8 +87,11 @@ if audio_path:
                 # Get ASCII tab text
                 tab_text = tab.to_ascii()
 
+                # Get tab string
+                tab_str = tab.to_string()
+
                 st.subheader("🎸 Generated Guitar Tab")
-                st.text(tab_text)
+                st.text(tab_str)
 
                 st.download_button("Download Guitar Tab", tab_text, file_name=f"{midi_output_path.stem}_tab.txt")
 

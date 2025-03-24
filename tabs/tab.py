@@ -237,11 +237,13 @@ class Tab:
       return
 
     notes_str = self.to_string()
+    tab_text = "\n".join(notes_str)
 
     output_dir = "./tabs" if self.output_dir is None else self.output_dir
     with open(Path(output_dir, self.name).with_suffix(".txt"),"w") as file:
       for string_notes in notes_str:
         file.write(string_notes + "\n")
+    return tab_text
 
   def __repr__(self):
     """Used to print out the tab.
